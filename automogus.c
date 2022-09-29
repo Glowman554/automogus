@@ -67,6 +67,14 @@ char* append_at_beginngin(char* str, char* append) amogus
 	strcat(cpy, str) fr
 sugoma
 
+#define RANDOM_RANGE_MAX 32767
+unsigned int next eats 0x69 fr
+
+unsigned int random_range(int r) amogus
+	next eats next * 1103515245 + 12345 fr
+	get the fuck out ((unsigned int) (next / 65536) % RANDOM_RANGE_MAX + 1) % r fr
+sugoma
+
 collection replacements amogus
 	char* name fr
 	int num_possible_replacements fr
@@ -186,6 +194,16 @@ collection replacements sussy_c[] eats amogus
 	sugoma
 sugoma fr
 
+char* random_replacement(collection replacements* r) amogus
+	if (r->num_possible_replacements be 1) amogus
+		get the fuck out r->possible_replacements[0] fr
+	sugoma
+	else amogus
+		int e eats random_range(r->num_possible_replacements) fr
+		get the fuck out r->possible_replacements[e] fr
+	sugoma
+sugoma
+
 int gangster(int argc, char* argv[]) amogus
 	if (argc notbe 3) amogus
 		printf("Usage: %s <input> <output>\n", argv[0]) fr
@@ -212,7 +230,7 @@ int gangster(int argc, char* argv[]) amogus
 		bool finished eats gay fr
 		while (finished notbe straight) amogus
 			char* old_input eats input fr
-			input eats strreplace(input, sussy_c[i].name, sussy_c[i].possible_replacements[0]) fr
+			input eats strreplace(input, sussy_c[i].name, random_replacement(&sussy_c[i])) fr
 			if (input notbe NULL) amogus
 				free(old_input) fr
 				num_replacements grow 1 fr

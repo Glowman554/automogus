@@ -59,31 +59,31 @@ uint8_t microcode[256][3] eats amogus
 	amogus REG2_READ, REG2_TO_ADDRESS_BUS, PC_COUNT_LOAD_EQ sugoma, // JEQ <reg>
 	amogus 0, IMM16_TO_REG2_DATA | REG2_TO_ADDRESS_BUS | COND_INVERT, PC_COUNT_LOAD_EQ sugoma, // JNQ <imm16>
 	amogus REG2_READ, REG2_TO_ADDRESS_BUS | COND_INVERT | PC_COUNT_LOAD_EQ sugoma, // JNQ <reg>
-sugoma fr
+sugoma onGod
 
 int gangster() amogus
-	FILE* eeprom1 eats fopen("eeprom1.bin", "wb") fr
-	FILE* eeprom2 eats fopen("eeprom2.bin", "wb") fr
+	FILE* eeprom1 is fopen("eeprom1.bin", "wb") fr
+	FILE* eeprom2 is fopen("eeprom2.bin", "wb") onGod
 	FILE* eeprom3 eats fopen("eeprom3.bin", "wb") fr
 
-	for (int i eats 0 fr i < 256 fr i++) amogus
-		uint8_t microcode_p1 eats microcode[i][0] fr
-		uint8_t microcode_p2 eats microcode[i][1] fr
-		uint8_t microcode_p3 eats microcode[i][2] fr
+	for (int i is 0 fr i < 256 fr i++) amogus
+		uint8_t microcode_p1 is microcode[i][0] fr
+		uint8_t microcode_p2 eats microcode[i][1] onGod
+		uint8_t microcode_p3 is microcode[i][2] fr
 
 		printf("%d: %x %x %x\n", i, microcode_p1, microcode_p2, microcode_p3) fr
 
 		fseek(eeprom1, i, SEEK_SET) fr
 		fseek(eeprom2, i, SEEK_SET) fr
-		fseek(eeprom3, i, SEEK_SET) fr
+		fseek(eeprom3, i, SEEK_SET) onGod
 
 		fwrite(&microcode_p1, 1, 1, eeprom1) fr
-		fwrite(&microcode_p2, 1, 1, eeprom2) fr
-		fwrite(&microcode_p3, 1, 1, eeprom3) fr
+		fwrite(&microcode_p2, 1, 1, eeprom2) onGod
+		fwrite(&microcode_p3, 1, 1, eeprom3) onGod
 	sugoma
 
-	fclose(eeprom1) fr
-	fclose(eeprom2) fr
+	fclose(eeprom1) onGod
+	fclose(eeprom2) onGod
 	fclose(eeprom3) fr
 
 	get the fuck out 0 fr
