@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 #ifdef __GNUC__
-#define PACK( __Declaration__ ) __Declaration__ __attribute__((__packed__))
+#define PACK( __Declaration__ ) __Declaration__ __attribute__((packed))
 #endif
 #ifdef _MSC_VER
 #pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
@@ -91,7 +91,7 @@ void cpu_tick(cpu_state_t* state) {
 	}
 #endif
 
-	debugf("0x%x: 0x%x 0x%x 0x%x 0x%x (0x%x)\n" , state->pc,  instruction->opcode, instruction->reg1, instruction->reg2, instruction->imm16, instruction);
+	debugf("0x%x: 0x%x 0x%x 0x%x 0x%x (0x%lx)\n" , state->pc,  instruction->opcode, instruction->reg1, instruction->reg2, instruction->imm16, (uint64_t) instruction);
 
 	switch (instruction->opcode)
 	{

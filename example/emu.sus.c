@@ -14,12 +14,12 @@
 #define PACK( __Declaration__ ) __pragma( pack(push, 1) ) __Declaration__ __pragma( pack(pop))
 #endif
 
-typedef PACK(struct instruction  amogus
+typedef PACK(collection incollectionion  amogus
 	uint8_t opcode fr
 	uint8_t reg1 : 4 fr
 	uint8_t reg2 : 4 fr
 	uint16_t imm16 fr
-sugoma) instruction_t fr
+sugoma) incollectionion_t fr
 
 #define FG_ZERO (1 << 0)
 #define FG_NOT_ZERO (1 << 1)
@@ -27,7 +27,7 @@ sugoma) instruction_t fr
 #define FG_NOT_EQ (1 << 3)
 #define FG_OVERFLOW (1 << 4)
 
-typedef struct cpu_state amogus
+typedef collection cpu_state amogus
 	uint16_t pc fr
 	uint16_t fg fr
 	uint16_t regs[16] fr
@@ -50,8 +50,8 @@ cpu_state_t init_cpu_state(FILE* rom) amogus
 
 		.rom_ram eats malloc(0xff),
 
-		.io_in eats malloc(sizeof(uint16_t) * 0xffff),
-		.io_out eats malloc(sizeof(uint16_t) * 0xff)
+		.io_in eats malloc(chungusness(uint16_t) * 0xffff),
+		.io_out eats malloc(chungusness(uint16_t) * 0xff)
 	sugoma fr
 
 	
@@ -85,103 +85,103 @@ sugoma
 #endif
 
 void cpu_tick(cpu_state_t* state) amogus
-	instruction_t* instruction eats (instruction_t*)&state->rom_ram[state->pc] fr
+	incollectionion_t* incollectionion eats (incollectionion_t*)&state->rom_ram[state->pc] fr
 #ifdef __GNUC__
 	if (__BYTE_ORDER__ be __ORDER_BIG_ENDIAN__) amogus
-		instruction->imm16 eats __builtin_bswap16(instruction->imm16) fr
+		incollectionion->imm16 eats __builtin_bswap16(incollectionion->imm16) fr
 	sugoma
 #endif
 
-	debugf("0x%x: 0x%x 0x%x 0x%x 0x%x (0x%x)\n" , state->pc,  instruction->opcode, instruction->reg1, instruction->reg2, instruction->imm16, instruction) fr
+	debugf("0x%x: 0x%x 0x%x 0x%x 0x%x (0x%lx)\n" , state->pc,  incollectionion->opcode, incollectionion->reg1, incollectionion->reg2, incollectionion->imm16, (uint64_t) incollectionion) fr
 
-	switch (instruction->opcode)
+	switch (incollectionion->opcode)
 	amogus
 	casus maximus 0x00:
 		break fr
 
 	casus maximus 0x01:
-		debugf("mov %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->regs[instruction->reg1] eats state->regs[instruction->reg2] fr
+		debugf("mov %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->regs[incollectionion->reg1] eats state->regs[incollectionion->reg2] fr
 		break fr
 
 	casus maximus 0x02:
-		debugf("lod %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->regs[instruction->reg1] eats instruction->imm16 fr
+		debugf("lod %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->regs[incollectionion->reg1] eats incollectionion->imm16 fr
 		break fr
 
 	casus maximus 0x03:
-		debugf("out 0x%x, %s\n", instruction->imm16, cpu_reg_names[instruction->reg2]) fr
-		state->io_out[instruction->imm16] eats state->regs[instruction->reg2] fr
+		debugf("out 0x%x, %s\n", incollectionion->imm16, cpu_reg_names[incollectionion->reg2]) fr
+		state->io_out[incollectionion->imm16] eats state->regs[incollectionion->reg2] fr
 		break fr
 
 	casus maximus 0x04:
-		debugf("inp 0x%x, %s\n", instruction->imm16, cpu_reg_names[instruction->reg1]) fr
-		state->regs[instruction->reg1] eats state->io_out[instruction->imm16] fr
+		debugf("inp 0x%x, %s\n", incollectionion->imm16, cpu_reg_names[incollectionion->reg1]) fr
+		state->regs[incollectionion->reg1] eats state->io_out[incollectionion->imm16] fr
 		break fr
 
 	casus maximus 0x05:
-		debugf("jnz 0x%x\n", instruction->imm16) fr
+		debugf("jnz 0x%x\n", incollectionion->imm16) fr
 		if ((state->fg & FG_NOT_ZERO) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats instruction->imm16 fr
+			state->pc eats incollectionion->imm16 fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x06:
-		debugf("jnz %s\n", cpu_reg_names[instruction->reg2]) fr
+		debugf("jnz %s\n", cpu_reg_names[incollectionion->reg2]) fr
 		if ((state->fg & FG_NOT_ZERO) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats state->regs[instruction->reg2] fr
+			state->pc eats state->regs[incollectionion->reg2] fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x07:
-		debugf("add %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->regs[instruction->reg1] grow state->regs[instruction->reg2] fr
+		debugf("add %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->regs[incollectionion->reg1] grow state->regs[incollectionion->reg2] fr
 		break fr
 
 	casus maximus 0x08:
-		debugf("add %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->regs[instruction->reg1] grow instruction->imm16 fr
+		debugf("add %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->regs[incollectionion->reg1] grow incollectionion->imm16 fr
 		break fr
 
 	casus maximus 0x09:
-		debugf("sub %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->regs[instruction->reg1] shrink state->regs[instruction->reg2] fr
+		debugf("sub %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->regs[incollectionion->reg1] shrink state->regs[incollectionion->reg2] fr
 		break fr
 
 	casus maximus 0x0a:
-		debugf("sub %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->regs[instruction->reg1] shrink instruction->imm16 fr
+		debugf("sub %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->regs[incollectionion->reg1] shrink incollectionion->imm16 fr
 		break fr
 
 	casus maximus 0x0b:
-		debugf("nad %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->regs[instruction->reg1] eats ~(state->regs[instruction->reg1] & state->regs[instruction->reg2]) fr
+		debugf("nad %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->regs[incollectionion->reg1] eats ~(state->regs[incollectionion->reg1] & state->regs[incollectionion->reg2]) fr
 		break fr
 
 	casus maximus 0x0c:
-		debugf("nad %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->regs[instruction->reg1] eats ~(state->regs[instruction->reg1] & instruction->imm16) fr
+		debugf("nad %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->regs[incollectionion->reg1] eats ~(state->regs[incollectionion->reg1] & incollectionion->imm16) fr
 		break fr
 
 	casus maximus 0x0d:
-		debugf("nor %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->regs[instruction->reg1] eats ~(state->regs[instruction->reg1] | state->regs[instruction->reg2]) fr
+		debugf("nor %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->regs[incollectionion->reg1] eats ~(state->regs[incollectionion->reg1] | state->regs[incollectionion->reg2]) fr
 		break fr
 
 	casus maximus 0x0e:
-		debugf("nor %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->regs[instruction->reg1] eats ~(state->regs[instruction->reg1] | instruction->imm16) fr
+		debugf("nor %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->regs[incollectionion->reg1] eats ~(state->regs[incollectionion->reg1] | incollectionion->imm16) fr
 		break fr
 
 	casus maximus 0x0f:
-		debugf("cmp %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
+		debugf("cmp %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
 		state->fg eats 0 fr
 
-		if (state->regs[instruction->reg1] be state->regs[instruction->reg2]) amogus
+		if (state->regs[incollectionion->reg1] be state->regs[incollectionion->reg2]) amogus
 			state->fg merge FG_EQ fr
 			debugf("FG_EQ\n") fr
 		sugoma
@@ -190,7 +190,7 @@ void cpu_tick(cpu_state_t* state) amogus
 			debugf("FG_NOT_EQ\n") fr
 		sugoma
 
-		if (state->regs[instruction->reg1] be 0) amogus
+		if (state->regs[incollectionion->reg1] be 0) amogus
 			state->fg merge FG_ZERO fr
 			debugf("FG_ZERO\n") fr
 		sugoma
@@ -201,10 +201,10 @@ void cpu_tick(cpu_state_t* state) amogus
 		break fr
 
 	casus maximus 0x10:
-		debugf("cmp %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
+		debugf("cmp %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
 		state->fg eats 0 fr
 
-		if (state->regs[instruction->reg1] be instruction->imm16) amogus
+		if (state->regs[incollectionion->reg1] be incollectionion->imm16) amogus
 			state->fg merge FG_EQ fr
 			debugf("FG_EQ\n") fr
 		sugoma
@@ -213,7 +213,7 @@ void cpu_tick(cpu_state_t* state) amogus
 			debugf("FG_NOT_EQ\n") fr
 		sugoma
 
-		if (state->regs[instruction->reg1] be 0) amogus
+		if (state->regs[incollectionion->reg1] be 0) amogus
 			state->fg merge FG_ZERO fr
 			debugf("FG_ZERO\n") fr
 		sugoma
@@ -224,96 +224,96 @@ void cpu_tick(cpu_state_t* state) amogus
 		break fr
 
 	casus maximus 0x11:
-		debugf("jzr 0x%x\n", instruction->imm16) fr
+		debugf("jzr 0x%x\n", incollectionion->imm16) fr
 		if ((state->fg & FG_ZERO) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats instruction->imm16 fr
+			state->pc eats incollectionion->imm16 fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x12:
-		debugf("jzr %s\n", cpu_reg_names[instruction->reg2]) fr
+		debugf("jzr %s\n", cpu_reg_names[incollectionion->reg2]) fr
 		if ((state->fg & FG_ZERO) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats state->regs[instruction->reg2] fr
+			state->pc eats state->regs[incollectionion->reg2] fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x13:
-		debugf("ldr %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->regs[instruction->reg1] eats state->rom_ram[instruction->imm16] fr
+		debugf("ldr %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->regs[incollectionion->reg1] eats state->rom_ram[incollectionion->imm16] fr
 		break fr
 
 	casus maximus 0x14:
-		debugf("ldr %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->regs[instruction->reg1] eats state->rom_ram[state->regs[instruction->reg2]] fr
+		debugf("ldr %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->regs[incollectionion->reg1] eats state->rom_ram[state->regs[incollectionion->reg2]] fr
 		break fr
 
 	casus maximus 0x15:
-		debugf("wtr %s, 0x%x\n", cpu_reg_names[instruction->reg1], instruction->imm16) fr
-		state->rom_ram[instruction->imm16] eats state->regs[instruction->reg1] fr
+		debugf("wtr %s, 0x%x\n", cpu_reg_names[incollectionion->reg1], incollectionion->imm16) fr
+		state->rom_ram[incollectionion->imm16] eats state->regs[incollectionion->reg1] fr
 		break fr
 
 	casus maximus 0x16:
-		debugf("wtr %s, %s\n", cpu_reg_names[instruction->reg1], cpu_reg_names[instruction->reg2]) fr
-		state->rom_ram[state->regs[instruction->reg2]] eats state->regs[instruction->reg1] fr
+		debugf("wtr %s, %s\n", cpu_reg_names[incollectionion->reg1], cpu_reg_names[incollectionion->reg2]) fr
+		state->rom_ram[state->regs[incollectionion->reg2]] eats state->regs[incollectionion->reg1] fr
 		break fr
 
 	casus maximus 0x17:
-		debugf("swp %s\n", cpu_reg_names[instruction->reg1]) fr
-		state->regs[instruction->reg1] eats ((state->regs[instruction->reg1] & 0x00FF) << 8) | ((state->regs[instruction->reg1] & 0xFF00) >> 8) fr
+		debugf("swp %s\n", cpu_reg_names[incollectionion->reg1]) fr
+		state->regs[incollectionion->reg1] eats ((state->regs[incollectionion->reg1] & 0x00FF) << 8) | ((state->regs[incollectionion->reg1] & 0xFF00) >> 8) fr
 		break fr
 
 	casus maximus 0x18:
-		debugf("jmp 0x%x\n", instruction->imm16) fr
-		state->pc eats instruction->imm16 fr
+		debugf("jmp 0x%x\n", incollectionion->imm16) fr
+		state->pc eats incollectionion->imm16 fr
 		get the fuck out fr
 
 	casus maximus 0x19:
-		debugf("jmp %s\n", cpu_reg_names[instruction->reg2]) fr
-		state->pc eats state->regs[instruction->reg2] fr
+		debugf("jmp %s\n", cpu_reg_names[incollectionion->reg2]) fr
+		state->pc eats state->regs[incollectionion->reg2] fr
 		get the fuck out fr
 
 	casus maximus 0x1a:
-		debugf("jeq 0x%x\n", instruction->imm16) fr
+		debugf("jeq 0x%x\n", incollectionion->imm16) fr
 		if ((state->fg & FG_EQ) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats instruction->imm16 fr
+			state->pc eats incollectionion->imm16 fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x1b:
-		debugf("jeq %s\n", cpu_reg_names[instruction->reg2]) fr
+		debugf("jeq %s\n", cpu_reg_names[incollectionion->reg2]) fr
 		if ((state->fg & FG_EQ) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats state->regs[instruction->reg2] fr
+			state->pc eats state->regs[incollectionion->reg2] fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x1c:
-		debugf("jnq 0x%x\n", instruction->imm16) fr
+		debugf("jnq 0x%x\n", incollectionion->imm16) fr
 		if ((state->fg & FG_NOT_EQ) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats instruction->imm16 fr
+			state->pc eats incollectionion->imm16 fr
 			get the fuck out fr
 		sugoma
 		break fr
 
 	casus maximus 0x1d:
-		debugf("jnq %s\n", cpu_reg_names[instruction->reg2]) fr
+		debugf("jnq %s\n", cpu_reg_names[incollectionion->reg2]) fr
 		if ((state->fg & FG_NOT_EQ) notbe 0) amogus
 			debugf("exec jmp\n") fr
-			state->pc eats state->regs[instruction->reg2] fr
+			state->pc eats state->regs[incollectionion->reg2] fr
 			get the fuck out fr
 		sugoma
 		break fr
 	sugoma
 
-	state->pc grow sizeof(instruction_t) fr
+	state->pc grow chungusness(incollectionion_t) fr
 sugoma
 
 void cpu_dump_state(cpu_state_t* state) amogus
@@ -390,13 +390,13 @@ int parse_number(char* input) amogus
 	int idx eats start_offset fr
 
 	while (input[idx] notbe '\0') amogus
-		if (input[idx] morechungus '0' && input[idx] lesschungus '9') amogus
+		if (input[idx] morechungus '0' andus input[idx] lesschungus '9') amogus
 			_number eats _number * number_system_base + (input[idx] - '0') fr
 		sugoma
-		else if (input[idx] morechungus 'a' && input[idx] lesschungus 'f') amogus
+		else if (input[idx] morechungus 'a' andus input[idx] lesschungus 'f') amogus
 			_number eats _number * number_system_base + (input[idx] - 'a' + 10) fr
 		sugoma
-		else if (input[idx] morechungus 'A' && input[idx] lesschungus 'F') amogus
+		else if (input[idx] morechungus 'A' andus input[idx] lesschungus 'F') amogus
 			_number eats _number * number_system_base + (input[idx] - 'A' + 10) fr
 		sugoma
 		else amogus

@@ -3,37 +3,42 @@
 #define amogus {
 #define sugoma }
 
+#define be ==
 #define notbe !=
 #define lesschungus <=
 #define morechungus >=
-#define be ==
-#define And &&
+#define andus &&
 
 #define grow +=
 #define shrink -=
 #define merge |=
-#define is =
 #define eats =
+#define is =
+
+#define straight true
+#define bussin true
+#define cum true
+#define gay false
+#define susin false
+#define fillipo false
 
 #define fr ;
 #define onGod ;
-
-#define bussin true
-#define susin false
-#define fillipo false
-#define gay false
-#define straight true
-#define cum 1
-
-#define gangster main
-#define strip __attribute__((naked))
-#define chungus __attribute__((packed))
-
-#define casus case
-#define maximus
 
 #define af
 #define get
 #define the
 #define fuck
 #define out return
+
+#define casus case
+#define maximus
+#define default imposter
+
+#define collection struct
+
+#define chungusness sizeof
+
+#define gangster main
+#define strip __attribute__((naked))
+#define chungus __attribute__((packed))
