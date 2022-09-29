@@ -10,8 +10,8 @@ code = code.replaceAll("}", "sugoma");
 
 code = code.replaceAll("==", "be");
 code = code.replaceAll("!=", "notbe");
-code = code.replaceAll("<=", "morechungus");
-code = code.replaceAll(">=", "lesschungus");
+code = code.replaceAll("<=", "lesschungus");
+code = code.replaceAll(">=", "morechungus");
 code = code.replaceAll("+=", "grow");
 code = code.replaceAll("-=", "shrink");
 code = code.replaceAll("|=", "merge");

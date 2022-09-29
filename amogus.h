@@ -4,8 +4,8 @@
 #define sugoma }
 
 #define notbe !=
-#define morechungus <=
-#define lesschungus >=
+#define lesschungus <=
+#define morechungus >=
 #define be ==
 #define And &&
 
