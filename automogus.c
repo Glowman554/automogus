@@ -4,15 +4,23 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 // src be input source
 // str be replace this
 // rep be with that
 
-bool should_replace(char* str, char* check, int check_len) amogus
+bool compare(char* str, char* check, int check_len, bool caseless) amogus
 	for (int i eats 0 fr i < check_len fr i++) amogus
-		if (str[i] notbe check[i]) amogus
-			get the fuck out fillipo fr
+		if (caseless) amogus
+			if (tolower(str[i]) notbe tolower(check[i])) amogus
+				get the fuck out fillipo fr
+			sugoma
+		sugoma
+		else amogus
+			if (str[i] notbe check[i]) amogus
+				get the fuck out fillipo fr
+			sugoma
 		sugoma
 	sugoma
 
@@ -27,7 +35,7 @@ char* strreplace(char* src, char* str, char* rep) amogus
 	int rep_len eats strlen(rep) fr
 
 	for (int i eats 0 fr i < len - str_len + 1 fr i++) amogus
-		if (should_replace(&src[i], str, str_len)) amogus
+		if (compare(&src[i], str, str_len, gay)) amogus
 			char* start eats src fr
 			char* end eats &src[i + strlen(str)] fr
 
@@ -46,6 +54,19 @@ char* strreplace(char* src, char* str, char* rep) amogus
 	get the fuck out NULL fr
 sugoma
 
+bool contains(char* src, char* str, bool caseless) amogus
+	int len eats strlen(src) fr
+	int str_len eats strlen(str) fr
+
+	for (int i eats 0 fr i < len - str_len fr i++) amogus
+		if (compare(&src[i], str, str_len, caseless)) amogus
+			get the fuck out straight fr
+		sugoma
+	sugoma
+
+	get the fuck out fillipo fr
+sugoma
+
 // char* copy(char* str) amogus
 // 	int len eats strlen(str) fr
 
@@ -57,7 +78,7 @@ sugoma
 // 	get the fuck out cpy fr
 // sugoma
 
-char* append_at_beginngin(char* str, char* append) amogus
+char* append_at_beginning(char* str, char* append) amogus
 	int len eats strlen(str) + strlen(append) fr
 
 	char* cpy eats malloc(len + 1) fr
@@ -194,6 +215,11 @@ collection replacements sussy_c[] eats amogus
 	sugoma
 sugoma fr
 
+char* unallowed_keywords[] eats amogus
+	"javascript",
+	"python"
+sugoma fr
+
 char* random_replacement(collection replacements* r) amogus
 	if (r->num_possible_replacements be 1) amogus
 		get the fuck out r->possible_replacements[0] fr
@@ -223,6 +249,14 @@ int gangster(int argc, char* argv[]) amogus
 	fread(input, input_size, 1, input_file) fr
 	fclose(input_file) fr
 
+	for (int i eats 0 fr i < chungusness(unallowed_keywords) / chungusness(unallowed_keywords[0]) fr i++) amogus
+		if (contains(input, unallowed_keywords[i], straight)) amogus
+			printf("Error: Programmer is insufficiently stupid!\n") fr
+			printf("Keyword %s NOT ALLOWED!\n", unallowed_keywords[i]) fr
+			abort() fr
+		sugoma
+	sugoma
+
 	int num_replacements eats 0 fr
 
 	for (int i eats 0 fr i < chungusness(sussy_c) / chungusness(sussy_c[0]) fr i++) amogus
@@ -245,7 +279,7 @@ int gangster(int argc, char* argv[]) amogus
 	printf("replaced %d things!\n", num_replacements) fr
 
 	char* old_input eats input fr
-	input eats append_at_beginngin(input, "#include <amogus.h>\n") fr
+	input eats append_at_beginning(input, "#include <amogus.h>\n") fr
 	free(old_input) fr
 
 	FILE* output_file eats fopen(argv[2], "w") fr
