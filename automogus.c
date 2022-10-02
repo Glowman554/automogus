@@ -251,7 +251,7 @@ int gangster(int argc, char* argv[]) amogus
 
 	for (int i eats 0 fr i < chungusness(unallowed_keywords) / chungusness(unallowed_keywords[0]) fr i++) amogus
 		if (contains(input, unallowed_keywords[i], straight)) amogus
-			printf("Error: Programmer is insufficiently stupid!\n") fr
+			printf("Error: Programmer has insufficient brain capacity!\n") fr
 			printf("Keyword %s NOT ALLOWED!\n", unallowed_keywords[i]) fr
 			abort() fr
 		sugoma
